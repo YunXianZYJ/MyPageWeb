@@ -1,83 +1,56 @@
-@charset "utf-8";
-/* CSS Document */
-
-
-.container {
-	background-color: #FFFFFF;
-	width: 90%;
-	margin-left: auto;
-	margin-right: auto;
-	border-bottom-width: 0px;
-	padding-left: 0px;
-	padding-right: 0px;
-	padding-top: 0px;
-	padding-bottom: 0px;
-	
+ body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
-.row {
-	
-	
+nav {
+    background-color: #333;
+    color: #fff;
+    padding: 1em 0;
 }
 
-.primary_header{
-	width: 100%;
-	background-color: #52bad5;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	clear: left;
-	border-bottom: 2px solid #2c9ab7;
-}
-.title {
-	font-weight: bold;
-	font-style: normal;
-	font-family: "Source Sans Pro";
-	text-align: center;
-	color: #FFFFFF;
-	letter-spacing: 2px;
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
 }
 
-.secondary_header {
-	width: 100%;
-	padding-top: 50px;
-	padding-bottom: 50px;
-	clear: left;
-	background-color: #B3B3B3;
-	
+nav ul li {
+    margin: 0 1em;
 }
 
-.container .secondary_header ul{
-	margin-top: 0%;
-	margin-right: auto;
-	margin-bottom: 0px;
-	margin-left: auto;
-	padding-top: 0px;
-	padding-right: 0px;
-	padding-bottom: 15px;
-	padding-left: 0px;
-	width: 100%;
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
 }
 
-.secondary_header ul li {
-	list-style: none;
-	float: left;
-	margin-right: auto;
-	margin-top: 0px;
-	font-family: "Source Sans Pro";
-	font-weight: normal;
-	color: #FFFFFF;
-	letter-spacing: 1px;
-	margin-left: auto;
-	text-align: center;
-	width: 10%;
-	transition: all 0.3s linear;
+section {
+    padding: 2em;
 }
 
-.secondary_header ul li:hover {
-	color: #717070;
-	cursor: pointer;
+h1, h2 {
+    text-align: center;
 }
 
-#menu {
-	
+.project-list, .notes-list, .downloads-list, .blog-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.project-item, .note-item, .download-item, .blog-item {
+    border: 1px solid #ccc;
+    margin: 1em;
+    padding: 1em;
+    width: 300px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1em 0;
 }
