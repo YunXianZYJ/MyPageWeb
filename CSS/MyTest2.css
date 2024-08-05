@@ -54,3 +54,8 @@ footer {
     text-align: center;
     padding: 1em 0;
 }
+.image_container{
+    width: 100px;
+    height: 200px;
+
+}
