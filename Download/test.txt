@@ -1,9 +1,121 @@
-#include <stdio.h>
 
-int main(){
-
-    printf("Hello);
-
-    return 0;
-
-}
+            Dim swApp As Object
+    
+            Dim Part As Object
+            Dim boolstatus As Boolean
+            Dim longstatus As Long, longwarnings As Long
+    
+            Sub main()
+    
+            Set swApp = Application.SldWorks
+    
+    
+            ' New Document
+            Dim swSheetWidth As Double
+            swSheetWidth = 0
+            Dim swSheetHeight As Double
+            swSheetHeight = 0
+            Dim swPart As PartDoc
+            Set swPart = Part
+            swApp.ActivateDoc2 "瀹炲績甯﹁疆", False, longstatus
+            Set Part = swApp.ActiveDoc
+            Dim myModelView As Object
+            Set myModelView = Part.ActiveView
+            myModelView.FrameState = swWindowState_e.swWindowMaximized
+    
+            '鍏抽棴鏍囨敞灏哄鏃惰緭鍏ュ昂瀵稿€�
+            swApp.SetUserPreferenceToggle swUserPreferenceToggle_e.swInputDimValOnCreate, False
+            Part.ClearSelection2 True
+    
+            鈥欐柊寤鸿崏鍥�
+            boolstatus = Part.Extension.SelectByID2("鍓嶈鍩哄噯闈�", "PLANE", 0, 0, 0, False, 0, Nothing, 0)
+            Part.SketchManager.InsertSketch True
+            Part.ClearSelection2 True
+    
+            '缁樺埗杞綋
+            Dim skSegment As Object
+            Dim myDisplayDim As Object
+            Set skSegment = Part.SketchManager.CreateCenterLine(0#, 0#, 0#, 0.05, 0#, 0#) '鏃嬭浆杞�
+            Set skSegment = Part.SketchManager.CreateCenterLine(0#, 0#, 0#, 0#, 0.02, 0#) '
+            Set myDisplayDim = Part.AddDimension2(-0.01, 0, 0)
+            Set skSegment = Part.SketchManager.CreateLine(0#, 0.02, 0#, 0.064, 0.02, 0#) '0.02瀛斿緞鍗婂緞 0.064甯﹁疆鎬婚暱
+            Set myDisplayDim = Part.AddDimension2(0, -0.01, 0)
+            Set skSegment = Part.SketchManager.CreateLine(0.064, 0.02, 0#, 0.064, 0.036, 0#) '0.036鍑稿彴鍗婂緞
+            Set myDisplayDim = Part.AddDimension2(0.094, 0, 0)
+            Set skSegment = Part.SketchManager.CreateLine(0.064, 0.036, 0#, 0.063, 0.036, 0#)  ' 0.063甯﹁疆闀垮害
+            Set skSegment = Part.SketchManager.CreateLine(0.063, 0.036, 0#, 0.063, 0.048, 0#)  ' 0.048澶栧緞/2
+            Set skSegment = Part.SketchManager.CreateLine(0.063, 0.048, 0#, 0#, 0.048, 0#)
+            Set myDisplayDim = Part.AddDimension2(0, 0.058, 0)
+            Set skSegment = Part.SketchManager.CreateLine(0#, 0.048, 0#, 0#, 0.02, 0#)
+            Set myDisplayDim = Part.AddDimension2(-0.02, 0, 0)
+            Part.ClearSelection2 True
+    
+            '缁樺埗杞Ы
+            Set skSegment = Part.SketchManager.CreateCenterLine (0.009, 0.048, 0#, 0.009, 0.036, 0#) '鏃嬭浆杞�
+            Set skSegment = Part.SketchManager.CreateLine(0.009, 0.036, 0#, 0.011748423867, 0.036, 0#)
+            Set skSegment = Part.SketchManager.CreateLine(0.011748423867, 0.036, 0#, 0.015417192044, 0.048, 0#)
+            Set skSegment = Part.SketchManager.CreateLine(0.015417192044, 0.048, 0#, 0.009, 0.048, 0#)
+            boolstatus = Part.Extension.SelectByID2("Line11", "SKETCHSEGMENT", 0, 0, 0, True, 0, Nothing, 0)
+            boolstatus = Part.Extension.SelectByID2("Line10", "SKETCHSEGMENT", 0, 0, 0, True, 0, Nothing, 0)
+            boolstatus = Part.Extension.SelectByID2("Line12", "SKETCHSEGMENT", 0, 0, 0, True, 0, Nothing, 0)
+            boolstatus = Part.Extension.SelectByID2("Line9", "SKETCHSEGMENT", 0, 0, 0, True, 0, Nothing, 0)
+            Part.SketchMirror
+            Set skSegment = Part.SketchManager.CreateLine(0.0035, 0.045, 0#, 0.0145, 0.045, 0#)
+            Part.ClearSelection2 True
+    
+            '闃靛垪杞Ы
+            boolstatus = Part.Extension.SelectByID2("Line11", "SKETCHSEGMENT", 0, 0, 0, True, 0, Nothing, 0)
+            boolstatus = Part.Extension.SelectByID2("Line10", "SKETCHSEGMENT", 0, 0, 0, True, 0, Nothing, 0)
+            boolstatus = Part.Extension.SelectByID2("Line14", "SKETCHSEGMENT", 0, 0, 0, True, 0, Nothing, 0)
+            boolstatus = Part.Extension.SelectByID2("Line15", "SKETCHSEGMENT", 0, 0, 0, True, 0, Nothing, 0)
+            boolstatus = Part.Extension.SelectByID2("Line9", "SKETCHSEGMENT",  0, 0, 0, True, 0, Nothing, 0)
+            boolstatus = Part.SketchManager.CreateLinearSketchStepAndRepeat(4, 1, 0.015, 0.01, 0, 1.5707963267949, "", False, False, False, True, False)
+            Part.ClearSelection2 True
+    
+            '鎷変几鏃嬭浆
+            boolstatus = Part.Extension.SelectByID2("鑽夊浘1", "SKETCH", 1.58561287909131E-02, 3.08550220919446E-02, 5.73026018725323E-03, False, 2, Nothing, 0)
+            Part.SelectionManager.EnableContourSelection = True
+            boolstatus = Part.Extension.SelectByID2("鑽夊浘1", "SKETCHREGION", 1.58561287909131E-02, 3.08550220919446E-02, 5.73026018725323E-03, True, 2, Nothing, 0)
+            boolstatus = Part.Extension.SelectByID2("Line1", "SKETCHSEGMENT", 2.10063565859201E-02, 1.09754580253052E-02, 1.65184376039625E-02, True, 16, Nothing, 0)
+            Dim myFeature As Object
+            Set myFeature = Part.FeatureManager.FeatureRevolve2(True, True, False, False, False, False, 0, 0, 6.2831853071796, 0, False, False, 0.01, 0.01, 0, 0, 0, True, True, True)
+            Part.SelectionManager.EnableContourSelection = False
+            Part.ClearSelection2 True
+    
+            '鏂板缓鑽夊浘
+            Set Part = swApp.ActiveDoc
+            boolstatus = Part.Extension.SelectByRay(7.79999999999745E-02, 1.96780694879098E-02, 1.50843754065049E-02, -1, 0, 0, 4.84535765663396E-04, 2, False, 0, 0)
+            Part.SketchManager.InsertSketch True
+            Part.ClearSelection2 True
+    
+            '缁樺埗閿Ы
+            vSkLines = Part.SketchManager.CreateCenterRectangle(0, 0.02, 0, 0.006,0.0233, 0)
+            Part.ClearSelection2 True
+    
+            '鍒囬櫎
+            Set myFeature = Part.FeatureManager.FeatureCut4(True, False, False, 1, 0, 0.01, 0.01, False, False, False, False, 1.74532925199433E-02, 1.74532925199433E-02, False, False, False, False, False, True, True, True, True, False, 0, 0, False, False)
+            Part.SelectionManager.EnableContourSelection = False
+            Part.ClearSelection2 True
+    
+            '鍊掕
+            Set swApp = Application.SldWorks
+            Set Part = swApp.ActiveDoc
+            boolstatus = Part.Extension.SelectByRay(6.89982452248046E-02, 6.28817946820703E-03, -2.00265148735213E-02, -0.97897555694092, -3.44982159104212E-02, -0.2010391305473, 2.88381057930086E-04, 1, True, 4096, 0)
+            boolstatus = Part.Extension.SelectByRay(-5.19226048254495E-05, 9.75229107190501E-04, -0.020721876057948, -0.97897555694092, -3.44982159104212E-02, -0.2010391305473, 2.88381057930086E-04, 1, True, 4096, 0)
+            Dim swFeatData As Object
+            Set swFeatData = Part.FeatureManager.CreateDefinition(swFmFillet)
+            swFeatData.Initialize swConstRadiusFillet
+            Set myFeature = Part.FeatureManager.InsertFeatureChamfer(6, 1, 0.001, 0.78539816339745, 0, 0, 0, 0)
+            Part.ClearSelection2 True
+    
+            '闅愯棌鑽夊浘
+            boolstatus = Part.Extension.SelectByID2("鑽夊浘1", "SKETCH", 0, 0, 0, False, 0, Nothing, 0)
+            Part.BlankSketch
+    
+            鈥樻潗璐�
+            Part.SetMaterialPropertyName2 "榛樿", "D:/86175/SW 2022/SOLIDWORKS/lang/chinese-simplified/sldmaterials/solidworks materials.sldmat", "鐏伴摳閾�"
+            Part.ClearSelection2 True
+    
+            '鎵撳紑鈥滄爣娉ㄥ昂瀵告椂杈撳叆灏哄鍊尖€�
+            swApp.SetUserPreferenceToggle swinputDimValOnCreate,True
+            End Sub   
