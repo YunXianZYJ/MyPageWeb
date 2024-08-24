@@ -17,6 +17,7 @@
                 const listItem = document.createElement('li');
                 const link = document.createElement('a');
                 link.href = file.Path;
+                link.textContent = file.name;
                 link.download = file.name;
                 listItem.appendChild(link);
                 fileList.appendChild(listItem);
