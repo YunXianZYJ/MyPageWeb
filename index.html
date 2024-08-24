@@ -37,8 +37,27 @@
                 <h3>项目名称</h3>
                 <p>项目描述</p>
                 <a href="">了解更多</a>
-                <a href="/Download/test.txt" download="test.txt">点击下载test</a>
-                <a href="/Download/hello.c" download="hello.c">点击下载hello</a>
+                <script>
+                    async function fetchFiles() {
+                        const response = await fetch('https://api.github.com/repos/YunXianZYJ/MyPageWeb/contents/download');
+                            const files = await response.json();
+
+                        const fileList = document.getElementById('file-list');
+                        files.forEach(file => {
+                            const listItem = document.createElement('li');
+                            const link = document.createElement('a');
+                            link.href = file.download_url;
+                            link.textContent = file.name;
+                            listItem.appendChild(link);
+                            fileList.appendChild(listItem);
+                        });
+                    }
+
+                    window.onload = fetchFiles;
+                </script>
+                <ul id="file-list">
+                    <!-- File links will be populated here -->
+                </ul>
             </div>
             <!-- 继续添加项目 -->
         </div>
