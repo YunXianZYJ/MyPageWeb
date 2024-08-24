@@ -16,9 +16,9 @@
             files.forEach(file => {
                 const listItem = document.createElement('li');
                 const link = document.createElement('a');
-                document.writeln("<p></p>")
-                link.href = file.Path;
-                link.textContent = file.name;
+
+                link.href = file.path;
+                link.download = file.name;
                 listItem.appendChild(link);
                 fileList.appendChild(listItem);
             });
